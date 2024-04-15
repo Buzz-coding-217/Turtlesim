@@ -24,6 +24,8 @@ class DistanceReader:
 
             # Adding the Distance to the total distance 
             self.total_distance += distance_traveled
+
+            # Publishing the data to the total distance
             self.distance_publisher.publish(Float64(self.total_distance))
           
         self.previous_pose = msg
