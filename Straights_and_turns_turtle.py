@@ -98,7 +98,7 @@ class TurtlesimStraightsAndTurns:
 
             # Making the robot stop after rotating a certain angle
             self.velocity_publisher.publish(rotate_cmd)
-            rospy.sleep(abs(self.goal_angle))
+            rospy.sleep(abs(self.goal_angle) % 36)
             rotate_cmd.angular.z = 0.0
             self.velocity_publisher.publish(rotate_cmd)
             self.angle_move = False
