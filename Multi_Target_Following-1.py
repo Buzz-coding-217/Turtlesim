@@ -13,9 +13,8 @@ class Target_Follower:
         rospy.on_shutdown(self.clean_shutdown)
 
         # Initialize publisher and subscriber with your robot's name
-        self.cmd_vel_pub = rospy.Publisher('/shravel/car_cmd_switch_node/cmd', T
-wist2DStamped, queue_size=1)
-etectionArray, self.tag_callback, queue_size=1)
+        self.cmd_vel_pub = rospy.Publisher('/shravel/car_cmd_switch_node/cmd', Twist2DStamped, queue_size=1)
+        rospy.Subscriber('/shravel/apriltag_detector_node/detections', AprilTagDetectionArray, self.tag_callback, queue_size=1)
         rospy.spin() # Spin forever but listen to message callbacks
 
     # April Tag Detection Callback
