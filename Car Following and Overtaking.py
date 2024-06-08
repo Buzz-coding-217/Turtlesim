@@ -90,17 +90,23 @@ class Autopilot:
         self.state_pub.publish(state_msg)
 
     def move_robot(self, detections):
+         # Detect Something in front of robot
          if self.front_dis > 0.1 or self.front_dis == 0:
             rospy.loginfo("Clear")
             return
+         # Waiting for the robot to move
          self.set_state("NORMAL_JOYSTICK_CONTROL")
          self.stop_robot()
          rospy.sleep(5)
+
+         # Continue moving if the object is removed
          if self.front_dis > 0.1 or self.front_dis == 0:
             rospy.loginfo("Clear")
             self.set_state("LANE_FOLLOWING")
             rospy.sleep(2)
             return
+
+         # Overtake the object if the robot is still there
          rospy.loginfo("Vehicle in Front")
          self.set_state("NORMAL_JOYSTICK_CONTROL")
          self.stop_robot()
@@ -129,6 +135,7 @@ class Autopilot:
          self.goal_distance(1,1)
          self.stop_robot()
          rospy.sleep(1)
+         # Continue Lane Following
          self.set_state("LANE_FOLLOWING")
          rospy.sleep(4)
 
