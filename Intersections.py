@@ -100,7 +100,7 @@ class Autopilot:
          y1 = detections[0].transform.translation.y
          z1 = detections[0].transform.translation.z
          rospy.loginfo(z1)
-
+         # if the sign is less than this threshold value then start executing the rotation.
          if z1 < 0.3:
           rospy.loginfo("STOP")
           rospy.sleep(1)
