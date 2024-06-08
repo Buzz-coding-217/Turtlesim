@@ -94,7 +94,7 @@ class Autopilot:
         if len(detections) == 0:
             return
 
-
+        # If Intersection sign is detected move accordingly
         if detections[0].tag_id == 11:
          x1 = detections[0].transform.translation.x
          y1 = detections[0].transform.translation.y
